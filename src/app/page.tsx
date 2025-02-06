@@ -1,101 +1,115 @@
+'use client';
+import React, { useEffect } from "react";
+import Link from "next/link";
 import Image from "next/image";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = "smooth";
+  }, []);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <div className="min-h-screen bg-gray-900 text-white font-sans">
+      {/* Hero Section */}
+      <section className="h-screen flex flex-col justify-center items-center text-center px-6">
+        <h1 className="text-6xl font-extrabold text-blue-400 mb-4 opacity-0 animate-fadeIn">Celeste Tan</h1>
+        <p className="text-2xl text-gray-400 mb-6 opacity-0 animate-fadeIn delay-200">Computer Engineer & Software Engineer</p>
+        <div className="flex gap-6">
+          <a href="#projects" className="px-6 py-3 bg-blue-500 text-white rounded-lg text-lg font-semibold hover:opacity-70 transition-opacity duration-300">View Projects</a>
+          <a href="#contact" className="px-6 py-3 border border-blue-500 text-blue-500 rounded-lg text-lg font-semibold hover:bg-blue-500 hover:text-white hover:opacity-70 transition-all duration-300">Contact Me</a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Navigation */}
+      <header className="sticky top-0 bg-gray-900 py-4 border-b border-gray-700 flex justify-center">
+        <nav>
+          <ul className="flex gap-12 text-lg">
+            <li><Link href="#about" className="hover:text-blue-400 transition-opacity duration-300 hover:opacity-70">About</Link></li>
+            <li><Link href="#projects" className="hover:text-blue-400 transition-opacity duration-300 hover:opacity-70">Projects</Link></li>
+            <li><Link href="#blog" className="hover:text-blue-400 transition-opacity duration-300 hover:opacity-70">Blog</Link></li>
+            <li><Link href="#contact" className="hover:text-blue-400 transition-opacity duration-300 hover:opacity-70">Contact</Link></li>
+          </ul>
+        </nav>
+      </header>
+
+      {/* About Section */}
+      <section id="about" className="py-24 text-center px-6">
+        <h2 className="text-5xl font-bold text-blue-400 opacity-0 animate-fadeIn">About Me</h2>
+        <p className="mt-6 text-gray-400 text-xl max-w-3xl mx-auto opacity-0 animate-fadeIn delay-200">I am a passionate full-stack developer specializing in modern web technologies, crafting elegant user interfaces and powerful backend solutions.</p>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-24 px-6">
+        <h2 className="text-5xl font-bold text-blue-400 text-center mb-12 opacity-0 animate-fadeIn">Projects</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="p-6 bg-gray-800 rounded-xl shadow-lg transition-opacity duration-300 hover:opacity-70">
+            <Image src="/project1.jpg" width={400} height={300} className="rounded-lg" alt="Project 1" />
+            <h3 className="text-2xl font-semibold text-white mt-4">Project 1</h3>
+            <p className="text-gray-400">A brief description of the project.</p>
+          </div>
+          <div className="p-6 bg-gray-800 rounded-xl shadow-lg transition-opacity duration-300 hover:opacity-70">
+            <Image src="/project2.jpg" width={400} height={300} className="rounded-lg" alt="Project 2" />
+            <h3 className="text-2xl font-semibold text-white mt-4">Project 2</h3>
+            <p className="text-gray-400">A brief description of the project.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      {/* <section id="contact" className="py-24 text-center px-6">
+        <h2 className="text-5xl font-bold text-blue-400 opacity-0 animate-fadeIn">Contact</h2>
+        <p className="mt-6 text-gray-400 text-xl opacity-0 animate-fadeIn delay-200">Feel free to reach out via email.</p>
+        <a href="mailto:quimbelto@gmail.com" className="text-blue-400 text-xl font-semibold underline hover:opacity-70 transition-opacity duration-300">quimbelto@gmail.com</a>
+      </section> */}
+
+      <section id="contact" className="py-24 text-center px-6">
+        <h2 className="text-5xl font-bold text-blue-400 opacity-0 animate-fadeIn">Contact</h2>
+        <p className="mt-6 text-gray-400 text-xl opacity-0 animate-fadeIn delay-200">Feel free to reach out through any of the following options:</p>
+        
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Email Card */}
+          <div className="p-6 bg-gray-800 rounded-xl shadow-lg hover:opacity-70 transition-opacity duration-300">
+            <h3 className="text-2xl font-semibold text-white mb-4">Email</h3>
+            <p className="text-gray-400 text-xl">
+              <a href="mailto:quimbelto@gmail.com" className="text-blue-400 font-semibold underline hover:opacity-70 transition-opacity duration-300">
+                quimbelto@gmail.com
+              </a>
+            </p>
+          </div>
+
+          {/* Phone Card */}
+          <div className="p-6 bg-gray-800 rounded-xl shadow-lg hover:opacity-70 transition-opacity duration-300">
+            <h3 className="text-2xl font-semibold text-white mb-4">Phone</h3>
+            <p className="text-gray-400 text-xl">
+              <a href="tel:+6591687703" className="text-blue-400 font-semibold underline hover:opacity-70 transition-opacity duration-300">
+                +65 9168 7703
+              </a>
+            </p>
+          </div>
+
+          {/* LinkedIn Card */}
+          <div className="p-6 bg-gray-800 rounded-xl shadow-lg hover:opacity-70 transition-opacity duration-300">
+            <h3 className="text-2xl font-semibold text-white mb-4">LinkedIn</h3>
+            <p className="text-gray-400 text-xl">
+              <a href="https://www.linkedin.com/in/celeste-tan-67a742166/" target="_blank" className="text-blue-400 font-semibold underline hover:opacity-70 transition-opacity duration-300">
+                View Profile
+              </a>
+            </p>
+          </div>
+
+          {/* GitHub Card */}
+          <div className="p-6 bg-gray-800 rounded-xl shadow-lg hover:opacity-70 transition-opacity duration-300">
+            <h3 className="text-2xl font-semibold text-white mb-4">GitHub</h3>
+            <p className="text-gray-400 text-xl">
+              <a href="https://github.com/xelisce" target="_blank" className="text-blue-400 font-semibold underline hover:opacity-70 transition-opacity duration-300">
+                Visit GitHub
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+
     </div>
   );
 }
