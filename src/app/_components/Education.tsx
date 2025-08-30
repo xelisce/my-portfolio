@@ -1,5 +1,5 @@
 'use client'
-import React from "react";
+import React, { useState } from "react";
 import educationData from "@/app/_data/education";
 
 const Education = () => (
@@ -25,11 +25,80 @@ const Education = () => (
             {item.description.split('\n').map((line, i) => (
               <p key={`${item.year}-desc-${i}`} className="text-gray-400">{line}</p>
             ))}
+            {/* Relevant Coursework for NUS */}
+            {item.title.toLowerCase().includes("national university of singapore") && (
+              <CollapsibleCoursework />
+            )}
           </div>
         </React.Fragment>
       ))}
     </div>
   </section>
 );
+
+// Collapsible Coursework Component
+const CollapsibleCoursework = () => {
+  const [open, setOpen] = useState(true); // Default open
+
+  return (
+    <div className="mt-4">
+      <button
+        className="text-green-400 text-sm font-semibold mb-2 flex items-center focus:outline-none"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-controls="coursework-list"
+      >
+        <span>Relevant Coursework</span>
+        <svg
+          className={`ml-2 w-4 h-4 transition-transform ${
+            open ? "rotate-90" : ""
+          }`}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+      {open && (
+        <div id="coursework-list" className="space-y-2">
+          {/* Hardware & Systems Section */}
+          <div>
+            <h5 className="text-green-300 text-xs font-bold mb-1">
+              Hardware, Systems & Signals
+            </h5>
+            <ul className="list-disc list-inside text-gray-300 text-xs grid grid-cols-1 gap-y-0">
+              <li className="mb-0">
+                CG1111A Engineering Principles & Practices I
+              </li>
+              <li className="mb-0">
+                CG2111A Engineering Principles & Practices II
+              </li>
+              <li className="mb-0">EE2026 Digital Design</li>
+              <li className="mb-0">CG2271 Real-Time Operating Systems</li>
+              <li className="mb-0">CG2027 Transistor-level Digital Circuits</li>
+              <li className="mb-0">CG2028 Computer Organisation</li>
+              <li className="mb-0">CG3207 Computer Architecture</li>
+              <li className="mb-0">CG2023 Signals & Systems</li>
+            </ul>
+          </div>
+          {/* Software & Intelligence Section */}
+          <div>
+            <h5 className="text-green-300 text-xs font-bold mb-1">
+              Software, Algorithms & Intelligence
+            </h5>
+            <ul className="list-disc list-inside text-gray-300 text-xs grid grid-cols-1 gap-y-0">
+              <li className="mb-0">CS2040C Data Structures and Algorithms</li>
+              <li className="mb-0">EE2211 Introduction to Machine Learning</li>
+              <li className="mb-0">MA1508E Linear Algebra for Engineering</li>
+              <li className="mb-0">CS2113 Software Engineering & Object-Oriented Programming</li>
+            </ul>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default Education;
