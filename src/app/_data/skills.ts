@@ -1,0 +1,37 @@
+const skillsData = {
+  technical: [
+    "Python",
+    "C/C++",
+    "JavaScript/TypeScript",
+    "Java",
+    "React",
+    "Next.js",
+    "Node.js",
+    "Embedded Systems",
+    "PCB Design",
+    "MATLAB",
+    "OpenCV",
+    "ROS",
+    "Machine Learning",
+    "Git",
+    "Linux",
+    "Microcontrollers (Arduino, STM32, ESP32)",
+    "Soldering & Circuit Prototyping",
+  ],
+  platforms: [
+    "Fusion 360",
+    "SolidWorks",
+    "EasyEDA",
+    "KiCad",
+    "Figma",
+    "Jupyter Notebook",
+    "IntelliJ IDEA",
+    "VS Code",
+    "GitHub",
+    "Notion",
+    "Trello",
+    "AWS",
+  ],
+};
+
+export default skillsData;

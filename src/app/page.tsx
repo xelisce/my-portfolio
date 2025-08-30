@@ -9,6 +9,7 @@ import Projects from "@/app/_components/Projects";
 // import Education from "@/app/_components/Education";
 import Contact from "@/app/_components/Contact";
 import Education from "./_components/Education";
+import Skills from "./_components/Skills";
 
 export default function Home() {
   useEffect(() => {
@@ -24,7 +25,7 @@ export default function Home() {
       <Education />
       <Projects />
       {/* <Awards /> */}
-
+      <Skills />
 
       <Contact />
     </div>
