@@ -1,7 +1,7 @@
 const skillsData = {
   technical: [
     "Python",
-    "C/C++",
+    "C/C++/C#",
     "JavaScript/TypeScript",
     "Java",
     "React",

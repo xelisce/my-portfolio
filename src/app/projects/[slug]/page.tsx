@@ -19,7 +19,11 @@ const findProjectBySlug = (slug: string) => {
   return null;
 };
 
-export default function ProjectSlugPage({ params }: { params: { slug: string } }) {
+export default function ProjectSlugPage(
+{ params }: 
+{ 
+  params: Promise<{ slug: string }>
+}) {
   const project = findProjectBySlug(params.slug);
 
   if (!project) return notFound();
