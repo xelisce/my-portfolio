@@ -20,7 +20,7 @@ const Education = () => (
               {item.awards.length > 0 ? (
                 item.awards.map((award, idx) => (
                   <li key={`${item.year}-${award.name}-${idx}`}>
-                    {("projectSlug" in award && award.projectSlug)? (
+                    {"projectSlug" in award && award.projectSlug ? (
                       <Link
                         href={`/projects/${award.projectSlug}`}
                         className="text-green-400 hover:underline"
@@ -50,6 +50,12 @@ const Education = () => (
               .toLowerCase()
               .includes("national university of singapore") && (
               <CollapsibleCoursework />
+            )}
+            {/* Less Relevant Coursework NUS */}
+            {item.title
+              .toLowerCase()
+              .includes("national university of singapore") && (
+              <CollapsibleLessRelevantCoursework />
             )}
             {/* Experiences for NUS */}
             {item.title
@@ -162,6 +168,71 @@ const CollapsibleExperiences = () => {
               <li className="mb-0">
                 Exchange to Korea University (Winter 2024)
               </li>
+            </ul>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+
+// Collapsible Less Relevant Coursework Component
+const CollapsibleLessRelevantCoursework = () => {
+  const [open, setOpen] = useState(false); // Default open
+
+  return (
+    <div className="mt-4">
+      <button
+        className="text-green-400 text-sm font-semibold mb-2 flex items-center focus:outline-none"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-controls="less-relevant-coursework-list"
+      >
+        <span>Other Coursework</span>
+        <svg
+          className={`ml-2 w-4 h-4 transition-transform ${
+            open ? "rotate-90" : ""
+          }`}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+      {open && (
+        <div id="less-relevant-coursework-list" className="space-y-2">
+          <div>
+            <h5 className="text-green-300 text-xs font-bold mb-1">
+              Mathematics & Computer Science
+            </h5>
+            <ul className="list-disc list-inside text-gray-300 text-xs grid grid-cols-1 gap-y-0">
+              <li className="mb-0">CS1231 Discrete Structures</li>
+              <li className="mb-0">CS1010 Programming Methodology</li>
+              <li className="mb-0">MA1512 Differential Equations for Engineering</li>
+              <li className="mb-0">EE2012 Analytical Methods in Electrical and Computer Engineering</li>
+              <li className="mb-0">GEA1000 Quantitative Reasoning with Data</li>
+            </ul>
+          </div>
+          <div>
+            <h5 className="text-green-300 text-xs font-bold mb-1">
+              Design
+            </h5>
+            <ul className="list-disc list-inside text-gray-300 text-xs grid grid-cols-1 gap-y-0">
+              <li className="mb-0">EG1311 Design & Make</li>
+              <li className="mb-0">DTK1234 Design Thinking</li>
+            </ul>
+          </div>
+          <div>
+            <h5 className="text-green-300 text-xs font-bold mb-1">
+              Business
+            </h5>
+            <ul className="list-disc list-inside text-gray-300 text-xs grid grid-cols-1 gap-y-0">
+              <li className="mb-0">PF1101 Fundamentals of Project Management</li>
+              <li className="mb-0">BSP1702X Legal Environment of Business</li>
+              <li className="mb-0">MKT1705X Principles of Marketing</li>
             </ul>
           </div>
         </div>
