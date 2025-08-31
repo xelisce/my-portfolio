@@ -19,12 +19,12 @@ const findProjectBySlug = (slug: string) => {
   return null;
 };
 
-export default function ProjectSlugPage(
+export default async function ProjectSlugPage(
 { params }: 
 { 
   params: Promise<{ slug: string }>
 }) {
-  const project = findProjectBySlug(params.slug);
+  const project = findProjectBySlug((await params).slug);
 
   if (!project) return notFound();
 
@@ -39,8 +39,18 @@ export default function ProjectSlugPage(
               href="/#projects"
               className="inline-flex items-center text-green-400 hover:text-green-300 text-sm font-semibold transition bg-gray-900/70 px-3 py-1 rounded"
             >
-              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              <svg
+                className="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15 19l-7-7 7-7"
+                />
               </svg>
               Back to Projects
             </Link>
@@ -62,7 +72,7 @@ export default function ProjectSlugPage(
         </div>
         {/* Content Blocks */}
         <div className="p-8 space-y-6">
-          {project.blocks?.map((block: Block, idx: number) => {
+          {(project.blocks as Block[])?.map((block: Block, idx: number) => {
             if (block.type === "image") {
               return (
                 <div key={idx} className="w-full flex flex-col items-center">
@@ -74,7 +84,9 @@ export default function ProjectSlugPage(
                     className="rounded-lg shadow-md object-contain max-h-80"
                   />
                   {block.caption && (
-                    <span className="text-xs text-gray-400 mt-2">{block.caption}</span>
+                    <span className="text-xs text-gray-400 mt-2">
+                      {block.caption}
+                    </span>
                   )}
                 </div>
               );
@@ -91,7 +103,9 @@ export default function ProjectSlugPage(
                     Your browser does not support the video tag.
                   </video>
                   {block.caption && (
-                    <span className="text-xs text-gray-400 mt-2">{block.caption}</span>
+                    <span className="text-xs text-gray-400 mt-2">
+                      {block.caption}
+                    </span>
                   )}
                 </div>
               );
@@ -115,7 +129,9 @@ export default function ProjectSlugPage(
                 >
                   “{block.text}”
                   {block.author && (
-                    <footer className="text-xs text-gray-500 mt-2">— {block.author}</footer>
+                    <footer className="text-xs text-gray-500 mt-2">
+                      — {block.author}
+                    </footer>
                   )}
                 </blockquote>
               );
@@ -136,21 +152,30 @@ export default function ProjectSlugPage(
             }
             if (block.type === "header1") {
               return (
-                <h1 key={idx} className="text-4xl font-bold text-green-400 mt-8 mb-4">
+                <h1
+                  key={idx}
+                  className="text-4xl font-bold text-green-400 mt-8 mb-4"
+                >
                   {block.text}
                 </h1>
               );
             }
             if (block.type === "header2") {
               return (
-                <h2 key={idx} className="text-3xl font-semibold text-green-300 mt-6 mb-3">
+                <h2
+                  key={idx}
+                  className="text-3xl font-semibold text-green-300 mt-6 mb-3"
+                >
                   {block.text}
                 </h2>
               );
             }
             if (block.type === "header3") {
               return (
-                <h3 key={idx} className="text-2xl font-semibold text-green-200 mt-4 mb-2">
+                <h3
+                  key={idx}
+                  className="text-2xl font-semibold text-green-200 mt-4 mb-2"
+                >
                   {block.text}
                 </h3>
               );
@@ -209,11 +234,17 @@ export default function ProjectSlugPage(
                     />
                   )}
                   <div className="flex-1">
-                    <div className="text-lg font-semibold text-green-300">{block.text}</div>
+                    <div className="text-lg font-semibold text-green-300">
+                      {block.text}
+                    </div>
                     {block.description && (
-                      <div className="text-gray-400 text-sm mt-1">{block.description}</div>
+                      <div className="text-gray-400 text-sm mt-1">
+                        {block.description}
+                      </div>
                     )}
-                    <div className="text-xs text-gray-500 mt-2">{block.href}</div>
+                    <div className="text-xs text-gray-500 mt-2">
+                      {block.href}
+                    </div>
                   </div>
                 </a>
               );

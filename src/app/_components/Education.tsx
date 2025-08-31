@@ -20,7 +20,7 @@ const Education = () => (
               {item.awards.length > 0 ? (
                 item.awards.map((award, idx) => (
                   <li key={`${item.year}-${award.name}-${idx}`}>
-                    {award.projectSlug ? (
+                    {("projectSlug" in award && award.projectSlug)? (
                       <Link
                         href={`/projects/${award.projectSlug}`}
                         className="text-green-400 hover:underline"
