@@ -5,8 +5,29 @@ const projectsData = {
 	"Robotics Projects": [
 
 		{
+			slug: "miniauv",
+			title: "MiniAUV",
+			src: "/projects/miniauv/banner.jpg",
+			description: "An autonomous underwater vehicle designed for complex underwater tasks for the RoboSub Competition.",
+			start: "May 2025",
+			end: "Aug 2025",
+			techStack: ["Jetson Orin Nano", "Pixhawk", "ArduSub", "MAVRos", "DVL"],
+			skills: ["ROS2", "Python", "C++", "OpenCV"],
+			blocks: [
+				{
+					type: "header3",
+					text: "Role: Software"
+				},
+				{
+					type: "paragraph", 
+					text: `This project made use of Pixhawk 6x to control the AUV, with ArduSub firmware. The high level planning and computer vision was done on the Jetson Orin Nano, using ROS2 Humble. The vehicle is equipped with a DVL for better state estimation underwater.`
+				},
+			]
+		},
+
+		{
 			slug: "sauvc",
-			title: "HornetXI AUV",
+			title: "HornetX AUV",
 			src: "/projects/hornet/banner.jpg",
 			description: "An autonomous underwater vehicle designed for complex underwater tasks.",
 			start: "July 2024",
@@ -17,6 +38,10 @@ const projectsData = {
 				{
 					type: "header3",
 					text: "Role: Software IC, Controls Engineer, OS Comms Focus"
+				},
+				{
+					type: "paragraph", 
+					text: `This project was made from ground up to compete in the SAUVC 2025 competition. The vehicle is designed to be highly modular and easily maintainable, with a focus on software reliability and robustness. The vehicle is equipped with a Jetson Orin NX for high level planning and computer vision, and uses ROS2 Humble as the main software framework. Additional sensors include an IMU and depth sensor for state estimation. PID was done on the 6DoF AUV for depth and heading and position control`
 				},
 			]
 		},
