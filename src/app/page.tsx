@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect } from "react";
 import Hero from "@/app/_components/Hero";
-import Banner from "@/app/_components/Banner";
+// import Banner from "@/app/_components/Banner";
 import About from "@/app/_components/About";
 import Navigation from "@/app/_components/Navigation";
 // import Awards from "@/app/_components/Awards";
@@ -18,7 +18,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans">
-      <Banner />
+      {/* <Banner /> */}
       <Hero />
       <Navigation />
       <About />

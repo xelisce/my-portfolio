@@ -18,6 +18,7 @@ const skillsData = {
     "ROS",
     "Machine Learning",
     "Git",
+    "Swift",
     "Soldering & Circuit Prototyping",
   ],
   platforms: [
@@ -30,6 +31,7 @@ const skillsData = {
     "Jupyter Notebook",
     "IntelliJ IDEA",
     "VS Code",
+    "XCode",
     "GitHub",
     "Notion",
     "Trello",
