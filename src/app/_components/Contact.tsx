@@ -51,7 +51,7 @@ const Contact = () => (
     {/* Download Resume Button */}
     <div className="mt-8">
       <a
-        href="/Resume_2025.pdf"
+        href="/Resume.pdf"
         download="Celeste_Tan_Resume.pdf"
         className="px-6 py-3 bg-green-600 text-white rounded-lg text-lg font-semibold hover:opacity-70 transition-opacity duration-300"
       >

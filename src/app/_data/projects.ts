@@ -145,8 +145,8 @@ const projectsData = {
 				},
 
 
-				{ type: "header2", text: "Subsection" },
-				{ type: "header3", text: "Sub-subsection" },
+				// { type: "header2", text: "Subsection" },
+				// { type: "header3", text: "Sub-subsection" },
 				// { type: "video", src: "/projects/robocup-robot/experience/hi.mp4", caption: "Demo video" }
 				// { type: "image", src: "/projects/safmc_banner.jpg", alt: "Drone in flight" },
 				// { type: "quote", text: "The sky is not the limit.", author: "Celeste" },
@@ -167,8 +167,12 @@ const projectsData = {
 					type: "header3",
 					text: "Role: Team Leader & Software & Electronics & Mechanical Engineer"
 				},
-				{ type: "paragraph", text: "This project explores building autonomous swarm drones using on the Crazyflie platform." },
+				{ type: "paragraph", text: "This project explores building autonomous swarm drones on the Crazyflie platform." },
 				// { type: "quote", text: "The sky is not the limit.", author: "Celeste" },
+				{
+					type: "paragraph",
+					text: `The project is currently in the early stages of development. More updates coming soon.`
+				}
 			],
 		},
 
@@ -235,8 +239,8 @@ const projectsData = {
 			title: "EE2026: FPGA Project",
 			src: "/projects/ee2026/banner.jpg",
 			description: "4 player fighting game with a keyboard controls and monitor and speaker output, implemented on 2 FPGA boards.",
-			start: "March 2022",
-			end: "March 2023",
+			start: "Feb 2025",
+			end: "May 2025",
 			techStack: ["FPGA", "Digilent Basys 3"],
 			skills: ["Verilog"],
 			blocks: [
@@ -388,19 +392,36 @@ const projectsData = {
 			src: "/projects/espresso/banner.png",
 			description: "A CLI app to help you manage your tasks and deadlines.",
 			start: "Aug 2025",
-			end: "Current",
+			end: "Oct 2025",
 			techStack: [],
 			skills: ["Java", "Git"],
 			blocks: [
 				{
 					type: "header3",
-					text: "Role: Software Engineer"
+					text: "Solo Project"
 				},
 				{ 
 					type: "paragraph", 
-					text: `This is a CLI app that helps you manage your tasks and deadlines. It is built using Java and follows the principles of Object-Oriented Programming (OOP). The project is currently in the early stages of development. More updates coming soon.`
+					text: `This is a CLI app that helps you manage your tasks and deadlines, done as part of the course CS2113 Software Engineering. It is built using Java and follows the principles of Object-Oriented Programming (OOP).`
 				},
-
+				{
+					type: "embedLink",
+					href: "https://github.com/xelisce/ip",
+					text: "Espresso Code & Releases",
+					description: "A CLI app to help you manage your tasks and deadlines.",
+					image: "/projects/espresso/banner.png"   // optional, will show instead of icon if present
+				},
+				{ 
+					type: "paragraph", 
+					text: `The documentation can be found here:`
+				},
+				{
+					type: "embedLink",
+					href: "https://xelisce.github.io/ip/",
+					text: "Espresso Documentation",
+					description: "A CLI app to help you manage your tasks and deadlines.",
+					image: "/projects/espresso/banner.png"   // optional, will show instead of icon if present
+				},
 			],
 		},
 	// 	{ src: "/project1.jpg", title: "VIAWiki", description: "A centralised database of Singapore student-led service projects" },
