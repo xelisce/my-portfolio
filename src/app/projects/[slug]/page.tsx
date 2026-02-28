@@ -195,15 +195,43 @@ export default async function ProjectSlugPage(
             }
             if (block.type === "files") {
               return (
-                <div key={idx} className="flex flex-col gap-2">
+                <div key={idx} className="flex flex-col gap-3">
+                  <h3 className="text-green-400 font-semibold text-lg mb-1">
+                    Files
+                  </h3>
                   {block.files.map((file, i) => (
                     <a
                       key={i}
                       href={file.href}
                       download
-                      className="inline-block bg-gray-800 text-green-300 px-3 py-1 rounded hover:bg-green-900 transition text-sm"
+                      className="
+            group
+            inline-flex items-center gap-3
+
+            bg-gray-800
+            text-green-300
+
+            px-5 py-3
+            rounded-lg
+
+            border border-gray-700
+            shadow-md
+
+            transition-all duration-300
+
+            hover:bg-green-900/40
+            hover:border-green-400
+            hover:shadow-green-400/30 hover:shadow-lg
+            hover:-translate-y-1
+          "
                     >
-                      {file.name}
+                      {/* File Icon */}
+                      <span className="text-xl">📄</span>
+
+                      {/* File Name */}
+                      <span className="font-medium group-hover:text-green-200">
+                        {file.name}
+                      </span>
                     </a>
                   ))}
                 </div>

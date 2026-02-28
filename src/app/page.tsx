@@ -1,13 +1,14 @@
 'use client';
 import React, { useEffect } from "react";
 import Hero from "@/app/_components/Hero";
-// import Banner from "@/app/_components/Banner";
+import Banner from "@/app/_components/Banner";
 import About from "@/app/_components/About";
 import Navigation from "@/app/_components/Navigation";
 // import Awards from "@/app/_components/Awards";
 import Projects from "@/app/_components/Projects";
 // import Education from "@/app/_components/Education";
 import Contact from "@/app/_components/Contact";
+import Languages from "@/app/_components/Languages";
 import Education from "./_components/Education";
 import Skills from "./_components/Skills";
 
@@ -18,7 +19,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans">
-      {/* <Banner /> */}
+      <Banner />
       <Hero />
       <Navigation />
       <About />
@@ -26,7 +27,7 @@ export default function Home() {
       <Projects />
       {/* <Awards /> */}
       <Skills />
-
+      <Languages />
       <Contact />
     </div>
   );

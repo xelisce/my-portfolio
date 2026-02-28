@@ -1,5 +1,7 @@
 const skillsData = {
   technical: [
+    "Verilog",
+    "VHDL",
     "Python",
     "C/C++/C#",
     "JavaScript/TypeScript",
@@ -20,6 +22,7 @@ const skillsData = {
     "Git",
     "Swift",
     "Soldering & Circuit Prototyping",
+    "Cocotb"
   ],
   platforms: [
     "Linux",
@@ -37,7 +40,9 @@ const skillsData = {
     "Trello",
     "AWS",
     "Vivado",
+    "MCUXpresso IDE",
     "STM32CubeIDE",
+    "STM32CubeProgrammer",
     "PlatformIO",
     "Microcontrollers (Arduino, STM32, ESP32, RPi Pico)",
   ],

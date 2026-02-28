@@ -168,6 +168,9 @@ const CollapsibleExperiences = () => {
               <li className="mb-0">
                 Exchange to Korea University (Winter 2024)
               </li>
+              <li className="mb-0">
+                Upcoming exchange to University of Wisconsin-Madison (Summer 2026)
+              </li>
             </ul>
           </div>
         </div>

@@ -6,11 +6,12 @@ const educationData = [
         M.Eng (2027-2028)
         NUS E-Scholars
         Team Bumblebee
-        Lab Assistant for EE2026 Digital Design
-        4.74 GPA`,
+        Lab Assistant for EE2026 Digital Design 
+        Lab Assistant for EG1311 Design & Make
+        4.80 GPA`,
     awards: [
       // Example: { name: "Award Name", projectSlug: "project-slug" }
-      { name: " " }
+      { name: "" }
     ]
   },
   {

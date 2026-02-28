@@ -17,10 +17,9 @@ const About = () => (
           B.Eng and continuing on to a Master&apos;s in 2028.
           <br />
           <br />I started coding and tinkering with robotics from a young age,
-          from early robotics projects, to robotics clubs, and then eventually
-          to representing Singapore at international competitions. Over time,
-          I’ve developed a passion for building reliable systems that bridge{" "}
-          {"  "}
+          from early robotics projects, to robotics clubs, and eventually
+          representing Singapore at international competitions. Over time, I’ve
+          developed a passion for building reliable systems that bridge{" "}
           <b>software, hardware, and real-world applications</b>. Click{" "}
           <Link href={"#education"} className="text-green-600/80">
             <span className="hover:underline hover:text-green-500">here</span>
@@ -28,30 +27,26 @@ const About = () => (
           for more information.
           <br />
           <br />
-          At NUS, I’ve been involved with{" "}
+          At NUS, I have worked extensively on autonomous robotic systems across
+          underwater and aerial platforms. I contributed to the development of
+          an autonomous MiniAUV that competed at RoboSub 2025, and I am
+          currently working on an undergraduate research project to build a{" "}
+          <b>fully autonomous drone</b> for SAFMC 2026.
+          <br />
+          <br />
+          Beyond system integration, I enjoy working close to the hardware. I
+          designed and built a <b>custom Electronic Speed Controller (ESC)</b>,
+          handling power electronics design, PCB layout, motor control logic,
+          and embedded firmware development. From low-level motor commutation to
+          high-level autonomy, I enjoy engineering systems end-to-end —
+          especially where{" "}
           <b>
-            <Link href={"https://bumblebee.sg/"} className="text-green-600/80">
-              <span className="hover:underline hover:text-green-500">
-                Team Bumblebee
-              </span>
-            </Link>
+            control theory, embedded systems, and intelligent software intersect
           </b>
-          , first as Software Subteam Lead for HornetX and later contributing to
-          the <b>MiniAUV</b>, which went on to compete at <b>RoboSub 2025</b>. I
-          am currently working on an undergraduate research project to build a
-          <b>fully autonomous drone</b> for <b>SAFMC 2026</b>, further
-          developing my expertise in robotics, embedded systems, and intelligent
-          control.
+          .
           <br />
-          <br />
-          Across these projects — underwater, land, and aerial — the common
-          thread has been <b>autonomy</b>, building robots capable of sensing,
-          decision-making, and autonomous action. I also enjoy the electronics
-          that power these systems, from creating and working with{" "}
-          <b>ICs and PCBs to FPGA-based designs</b>, and the challenge of
-          integrating hardware with intelligent software. I am looking to work
-          in fast-paced, collaborative environments and enjoy tackling problems
-          that{" "}
+          <br />I am looking to work in fast-paced, collaborative environments
+          and enjoy tackling problems that{" "}
           <b>challenge me to design and build across every layer of a system</b>
           .
         </p>
