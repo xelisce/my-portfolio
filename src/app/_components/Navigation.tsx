@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 const projectCategories = [
   { label: "Robotics", href: "/#projects-robotics-projects" },
-  { label: "Electrical", href: "/#projects-electrical-engineering-projects" },
+  { label: "Electrical & Computer", href: "/#projects-electrical-and-computer-engineering-projects" },
   { label: "Software", href: "/#projects-software-engineering-projects" },
 ];
 

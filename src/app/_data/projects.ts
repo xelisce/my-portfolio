@@ -546,6 +546,188 @@ const projectsData = {
 
 	"Electrical and Computer Engineering Projects": [
 		{
+			"slug": "custom-esc",
+			"title": "Custom Brushless ESC",
+			"src": "/projects/custom-esc/banner.jpg",
+			"description": "A discrete three-phase brushless motor controller designed for micro-air vehicles, implementing sensorless back-EMF commutation with AM32 firmware on STM32.",
+			"start": "May 2025",
+			"end": "Current",
+			"techStack": ["STM32F051", "AM32", "DRV8300", "INA180", "3-Phase MOSFET Bridge"],
+			"skills": ["KiCad", "Power Electronics", "PCB Layout", "Motor Control", "Embedded Firmware", "Signal Integrity"],
+			"blocks": [
+
+				{
+					"type": "header3",
+					"text": "Role: Hardware and Firmware Design"
+				},
+
+				{
+					"type": "paragraph",
+					"text":
+						"This project was an end-to-end design of a sensorless brushless ESC using the STM32F051 for micro-drone propulsion, built to understand and control every layer of the motor drive stack rather than relying on commercial BLHeli hardware. The controller targets lightweight 2S platforms and prioritises fast commutation, low electrical noise, and robust fault handling so that it can coexist with sensitive IMU and radio subsystems on a small airframe."
+				},
+
+				{
+					"type": "paragraph",
+					"text":
+						"The goal is to integrate with a also self-made flight controller (STM32F765), to end up with a drone capable of autonomous flight, that is fully implemented on a single PCB, together with the IMU and radio transceiver. The PCB will act as a frame, allowing for fast and reliable reproduction without need of mechanical frames, of custom made drones capable of expanding beyond its existing capabilities. It will support ports for cameras, other sensors, and more, putting it above the Crazyflie alternative for single PCB drones."
+				},
+
+				{
+					"type": "header1",
+					"text": "Control Strategy and Firmware Architecture"
+				},
+
+				{
+					"type": "paragraph",
+					"text":
+						"The ESC uses six-step trapezoidal commutation with back-EMF zero-cross detection, following the architecture used in most racing drone ESCs. This approach was chosen over FOC because it significantly reduces computational load, firmware complexity, and code size, allowing the system to run on an STM32F051 while still achieving high electrical RPM. AM32 firmware was selected as the control stack due to its open-source toolchain, active development, and compatibility with custom hardware targets."
+				},
+
+				// {
+				// 	"type": "paragraph",
+				// 	"text":
+				// 		"The microcontroller runs PWM generation on TIM1 with complementary high- and low-side outputs and hardware dead-time insertion. ADC sampling of phase currents and bus voltage is performed using DMA in circular mode so that measurements are continuously updated without stalling the control loop. A hardware break input is wired to both the current-sense comparator and external fault lines, allowing immediate shutdown of all MOSFETs without firmware latency."
+				// },
+
+				{
+					"type": "header1",
+					"text": "Microcontroller and Hardware Targeting"
+				},
+
+				{
+					"type": "paragraph",
+					"text":
+						"An STM32F051K8 was selected as the main controller to match AM32 reference designs while keeping flash, pin count, and package size minimal. The chip runs at 48 MHz using the PLL to maximise PWM resolution and ADC throughput. Hardware group B from the AM32 target matrix was implemented so that the firmware could be used with minimal modification, while still allowing custom telemetry and protection features."
+				},
+
+				{
+					"type": "paragraph",
+					"text":
+						"The board includes full SWD access for development, but the layout also anticipates a Tag-Connect footprint for future revisions to eliminate bulky debug headers. Multiple debug LEDs were added to expose power rails, MCU status, and fault states, enabling rapid bring-up without an oscilloscope during early testing."
+				},
+
+				{
+					"type": "image",
+					"src": "/projects/custom-esc/schematic.png",
+					"alt": "ESC schematic",
+					"caption": "ESC schematic showing STM32F051, DRV8300 gate driver, current sensing, and fault routing"
+				},
+
+				{
+					"type": "header1",
+					"text": "Power Stage and Gate Drive"
+				},
+
+				{
+					"type": "paragraph",
+					"text":
+						"The power stage uses a discrete three-phase MOSFET bridge driven by a DRV8300 triple half-bridge gate driver. Although the DRV8300 is electrically over-rated for a 2S system, it was chosen because it is widely used in AM32 reference hardware, inexpensive, and available in a hand-solderable TSSOP package. Using a single integrated three-phase driver reduces routing complexity and ensures matched propagation delays between phases."
+				},
+
+				{
+					"type": "paragraph",
+					"text":
+						"MOSFET selection was based on a worst-case phase current of approximately 8 A with significant headroom for transient spikes and regenerative back-EMF. Devices with ≥40 V Vds, low Rds(on), and high pulsed current capability were chosen to reduce conduction losses and thermal rise. The layout places the MOSFETs, driver, and high-frequency decoupling capacitors in a tight loop to minimise parasitic inductance and ringing, which is critical for both efficiency and EMI control."
+				},
+
+				{
+					"type": "header1",
+					"text": "Current Sensing and Protection"
+				},
+
+				{
+					"type": "paragraph",
+					"text":
+						"Low-side shunt resistors measure phase current, amplified by an INA180 with a gain selected to keep the ADC input within safe limits while maintaining sensitivity at low throttle. An RC filter on the amplifier output attenuates high-frequency switching noise before sampling. The conditioned signal feeds both the ADC for telemetry and a hardware comparator that triggers the TIM1 break input if the current exceeds a defined threshold, providing cycle-level over-current protection."
+				},
+
+				// {
+				// 	"type": "paragraph",
+				// 	"text":
+				// 		"Separate analog and power ground regions are joined at a single point near the shunt to prevent high di/dt switching currents from corrupting the measurement path. This grounding strategy was necessary to obtain stable current readings during commutation."
+				// },
+
+				{
+					"type": "header1",
+					"text": "Power Distribution and Bring-Up Strategy"
+				},
+
+				{
+					"type": "paragraph",
+					"text":
+						"All major rails, VBAT, 5 V, and 3.3 V, can be powered externally to allow staged testing of the MCU, gate driver, and power stage independently. This reduces the risk of catastrophic failure during initial firmware development. Reverse-polarity and inrush mitigation are planned for future revisions, along with TVS protection on the phase nodes."
+				},
+
+				{
+					"type": "header1",
+					"text": "Signal Interfaces and Telemetry"
+				},
+
+				{
+					"type": "paragraph",
+					"text":
+						"The ESC accepts standard PWM (D-Shot soon to be supported) input from a flight controller, routed to the AM32 communication pin defined for hardware group B. "
+				},
+
+				{
+					"type": "header1",
+					"text": "PCB Layout Considerations"
+				},
+
+				{
+					"type": "image",
+					"src": "/projects/custom-esc/pcb_layout.png",
+					"alt": "ESC PCB layout",
+					"caption": "Two-layer ESC PCB with separated power and analog ground regions"
+				},
+
+				{
+					"type": "paragraph",
+					"text":
+						"The PCB was routed to keep high-current switching loops as short and symmetric as possible while isolating the analog sensing network. Gate traces are length-matched to avoid phase skew. The design also exposes test points for phase voltages, current sense outputs, and logic rails, enabling systematic validation of each subsystem. There is ground stitching as well."
+				},
+
+				{
+					"type": "header1",
+					"text": "Flashing and Validation Workflow"
+				},
+
+				{
+					"type": "paragraph",
+					"text":
+						"The STM32 is programmed with the AM32 bootloader via ST-Link, after which firmware updates and configuration are performed through a flight controller using the AM32 configurator. This mirrors the workflow of commercial ESCs and allows in-system tuning of parameters such as dead-time, timing advance, and protection thresholds."
+				},
+
+				{
+					"type": "paragraph",
+					"text":
+						"Initial validation was performed by powering logic rails independently, confirming PWM generation, then enabling the gate driver without a motor to verify correct phase sequencing. Motor tests were introduced only after confirming proper behaviour."
+				},
+
+				{
+					"type": "header1",
+					"text": "Future Work"
+				},
+				{
+					"type": "paragraph",
+					"text":
+						"The current revision focuses on reliable implementation for 2S micro-air vehicles. The next iteration will explore field-oriented control to improve efficiency, acoustic noise, and low-speed torque, which will require faster current sampling, phase-aligned ADC triggering, and a higher performance MCU. Inline phase current sensing is also being considered to enable true torque control and more accurate observer-based estimation."
+				},
+				{
+					"type": "paragraph",
+					"text":
+						"From a hardware perspective, the design will migrate toward a compact 4-in-1 ESC architecture to reduce wiring mass and improve power distribution on multi-rotor frames. This will require thermal coupling analysis, shared bulk capacitance sizing, and careful separation of high di/dt switching domains between channels. Additional protection features such as TVS diodes on phase nodes, reverse polarity protection, and controlled inrush limiting are planned to improve survivability during battery hot-plug events."
+				},
+				{
+					"type": "paragraph",
+					"text":
+						"Debug and manufacturing improvements include replacing the SWD header with a Tag-Connect footprint, refining the ground strategy based on measured switching waveforms, and tuning the current-sense filter using oscilloscope captures from the physical board. These changes aim to transition the design from a bring-up prototype to a repeatable, flight-ready propulsion module."
+				}
+
+			]
+		},
+		{
 			slug: "cg3207",
 			title: "CG3207: RISC-V CPU on FPGA",
 			src: "/projects/cg3207/banner.jpg",
@@ -555,7 +737,6 @@ const projectsData = {
 			techStack: ["FPGA", "Nexys 4"],
 			skills: ["Verilog", "Computer Architecture", "Digital Design"],
 			blocks: [
-
 				{
 					type: "header3",
 					text: "Role: Digital Design Engineer (Pair Project)"
@@ -563,7 +744,8 @@ const projectsData = {
 
 				{
 					type: "paragraph",
-					text: `Designed and implemented a 32-bit RISC-V processor in Verilog as part of the CG3207 Computer Architecture course at NUS. The processor was deployed on a Nexys 4 FPGA and follows a standard 5-stage pipeline architecture: Instruction Fetch (IF), Instruction Decode (ID), Execute (EX), Memory (MEM), and Writeback (WB).`
+					text:
+						"Designed and implemented a 32-bit RV32I processor in Verilog and deployed it on a Nexys 4 FPGA. The design follows a classical five-stage pipeline but was extended with dynamic branch prediction, hardware hazard resolution, and a multi-cycle execution unit. The goal was to achieve correct program execution without compiler-inserted NOPs while maintaining high instruction throughput."
 				},
 
 				{
@@ -573,97 +755,71 @@ const projectsData = {
 
 				{
 					type: "paragraph",
-					text: `The processor uses a fully pipelined datapath with registers between all stages. A hardware hazard unit was implemented to handle both forwarding and stalling. Forwarding resolves data hazards whenever possible, while load-use hazards and multi-cycle operations trigger pipeline stalls, allowing programs to run correctly without manual NOP insertion.`
+					text:
+						"The datapath is fully pipelined with registers between IF, ID, EX, MEM, and WB stages. A dedicated hazard unit monitors source and destination registers across pipeline stages and dynamically selects forwarding paths from the EX/MEM and MEM/WB latches. Load-use hazards and multi-cycle operations assert a stall signal that freezes the upstream pipeline while allowing downstream stages to drain, preserving correctness without corrupting state."
 				},
 
-				{
-					type: "list",
-					items: [
-						"Standard 5-stage pipeline: IF, ID, EX, MEM, WB",
-						"Pipeline registers between all stages",
-						"Hardware hazard detection and control",
-						"Forwarding paths for ALU and memory results",
-						"Automatic pipeline stalling for unresolved hazards",
-						"Program execution without manual NOP insertion"
-					]
-				},
+				// {
+				// 	type: "image",
+				// 	src: "/projects/cg3207/pipeline.jpg",
+				// 	alt: "5-stage pipeline datapath",
+				// 	caption: "5-stage pipelined datapath with forwarding and hazard control"
+				// },
 
 				{
 					type: "header1",
-					text: "Branch Prediction"
+					text: "Dynamic Branch Prediction"
 				},
 
 				{
 					type: "paragraph",
-					text: `Implemented dynamic branch prediction using a Branch History Table (BHT) with 12-bit indexing (4096 entries) and a Branch Target Buffer (BTB). Each BHT entry uses a 2-bit saturating counter to predict branch direction. Since only 12 bits of the PC are used for indexing, multiple instructions can map to the same entry. Predicted targets are supplied during the fetch stage, and mispredictions trigger pipeline flush and recovery in the execute stage.`
+					text:
+						"Control hazards were mitigated using a Branch History Table indexed by the lower bits of the program counter and a Branch Target Buffer supplying predicted next addresses during the fetch stage. Each entry uses a two-bit saturating counter, allowing the predictor to learn branch behaviour over time. Mispredictions are detected in the execute stage, triggering a pipeline flush and redirecting the PC to the correct target."
 				},
 
+				// {
+				// 	type: "image",
+				// 	src: "/projects/cg3207/bht.jpg",
+				// 	alt: "Branch predictor structure",
+				// 	caption: "Branch prediction flow with BHT and BTB"
+				// },
+
 				{
-					type: "list",
-					items: [
-						"2-bit saturating counter branch prediction",
-						"BHT indexed by lower 12 bits of PC (4096 entries)",
-						"Branch Target Buffer for predicted targets",
-						"Prediction performed in fetch stage",
-						"Misprediction detection in execute stage",
-						"Automatic pipeline flush on misprediction"
-					]
+					type: "paragraph",
+					text:
+						"Using only the lower PC bits for indexing introduces aliasing, but this trade-off reduced memory usage while maintaining acceptable prediction accuracy for benchmark programs."
 				},
 
 				{
 					type: "header1",
-					text: "Multi-Cycle Arithmetic Unit"
+					text: "Multi-Cycle Execution Unit"
 				},
 
 				{
 					type: "paragraph",
-					text: `Hardware multiplication is implemented using a dedicated multi-cycle execution unit with Booth's algorithm for signed multiplication. The processor stalls automatically while multi-cycle operations are in progress. Division instructions were not implemented.`
-				},
-
-				{
-					type: "list",
-					items: [
-						"Dedicated multi-cycle execution unit",
-						"Booth's algorithm for signed multiplication",
-						"Supports signed and unsigned multiplication",
-						"Processor stall control using Busy signal",
-						"Division instructions not implemented"
-					]
+					text:
+						"Multiplication is implemented using a dedicated multi-cycle Booth unit operating alongside the main ALU. When a multiply instruction enters the execute stage, the pipeline asserts a busy signal that stalls instruction issue until the result is ready. This allows complex arithmetic without lengthening the critical path of the single-cycle ALU."
 				},
 
 				{
 					type: "header1",
-					text: "Processor Components"
-				},
-
-				{
-					type: "list",
-					items: [
-						"Register file with 32 general-purpose registers",
-						"ALU supporting arithmetic and logical operations",
-						"Control unit and instruction decoder",
-						"Hazard detection and forwarding unit",
-						"Branch prediction unit",
-						"Pipeline registers between all stages"
-					]
-				},
-
-				{
-					type: "header1",
-					text: "Instruction Support"
+					text: "Verification Strategy"
 				},
 
 				{
 					type: "paragraph",
-					text: `Supports the RV32I base instruction set along with multiplication instructions. Assembly programs were written to verify the correctness of the pipeline, hazard handling, and branch prediction mechanisms.`
+					text:
+						"Assembly test programs were written to stress data hazards, control hazards, and back-to-back dependent operations. Waveform inspection was used to confirm correct forwarding paths, stall timing, and pipeline flush behaviour. The processor successfully executed programs without manual scheduling, demonstrating correct hazard resolution."
 				},
 
 				{
 					type: "header1",
-					text: "Final Version"
+					text: "Final Implementation"
 				},
 
-				{ type: "files", files: [
+				{
+					type: "files",
+					files: [
 						{ name: "Source code.zip", href: "/projects/cg3207/cg3207_final_project.zip" }
 					]
 				}
@@ -681,21 +837,131 @@ const projectsData = {
 			techStack: ["FPGA", "Digilent Basys 3"],
 			skills: ["Verilog"],
 			blocks: [
-				// {
-				// 	type: "header3",
-				// 	text: "Role: Digital Design Engineer"
-				// },
-				{ 
-					type: "paragraph", 
-					text: `This Four Player fighting GAme on the FPGAs was done as part of the EE2026 Digital Design course at NUS. The characters are balanced with different speeds, healths, attack rates, and movement speeds. After a character dies, they are replaced with a tombstone until there is one left standing, in which case, the game ends. The 2 FPGAs communicate with each other in real time to send information about character actions over, including their ultimate and attacks.`
+
+				{
+					type: "header3",
+					text: "Role: Digital Design Engineer"
 				},
+
+				{
+					type: "paragraph",
+					text:
+						"This project implements a real-time four-player fighting game across two Basys 3 FPGAs. Each board handles two local players and renders game state to a VGA display while synchronising player actions over a custom inter-FPGA communication link. The design required deterministic timing for video generation, input handling, physics updates, and audio output."
+				},
+
+				{
+					type: "header1",
+					text: "System Architecture"
+				},
+
+				{
+					type: "image",
+					src: "/projects/ee2026/full_setup.png",
+					alt: "Entire monitor, keyboards, and system is set up for playing",
+					caption: "Full setup"
+				},
+
+				{
+					type: "paragraph",
+					text:
+						"The game engine is structured as a synchronous hardware pipeline driven by a global frame tick. 4 player inputs from 2 keyboards (arrows and wasd provides for 2 different players per keyboard) are debounced and converted into action commands that feed a character state machine. Movement, attack cooldowns, health updates, and collision detection are computed once per frame, ensuring consistent gameplay speed independent of rendering."
+				},
+
+				{ 
+					type: "video", 
+					src: "/projects/ee2026/ultimate_ready.MOV", 
+					caption: "Ultimate ready indication" 
+				},
+
+				{
+					type: "header1",
+					text: "Video and Rendering"
+				},
+
+				{
+					type: "paragraph",
+					text:
+						"A VGA controller generates pixel coordinates which are used to index sprite ROMs for characters, projectiles, and UI elements. Priority compositing ensures correct layering of players, attacks, and background tiles. Health bars, ultimate meters, and character indicators are rendered using a separate overlay path to avoid modifying sprite assets."
+				},
+
 				{
 					type: "image",
 					src: "/projects/ee2026/closeup.jpg",
-					alt: "Close up of the feedback screens",
-					caption: "The information on the Basys boards for ultimate status, health, and character."
+					alt: "HUD display",
+					caption: "On-board display showing health, ultimate status, and character selection"
+				},
+
+				{
+					type: "paragraph",
+					text:
+						"The 7 segment shows the health of each character. The positions correspond to the characters' positions on the OLED screen. The LEDs on the Basys 3 charge up as time goes by (at different speeds for different characters), and will start blinking once it is ready."
+				},
+
+				{
+					type: "header1",
+					text: "Inter-FPGA Communication"
+				},
+
+				{
+					type: "paragraph",
+					text:
+						"The two boards exchange player state and action packets over a parallel link. A lightweight protocol encodes position, health, attack state, and ultimate triggers."
+				},
+
+				{
+					type: "header1",
+					text: "Game Logic and Balancing"
+				},
+
+				{
+					type: "image",
+					src: "/projects/ee2026/attacks.png",
+					alt: "Character attacks on the screen",
+					caption: "Different attack styles for each character"
+				},
+
+				{
+					type: "paragraph",
+					text:
+						"Each character is implemented as a parameterised hardware module with configurable movement speed, attack rate, damage, and health. This allowed rapid balancing without modifying the control logic. "
+				},
+
+				{
+					type: "image",
+					src: "/projects/ee2026/death.png",
+					alt: "Two characters dead on screen",
+					caption: "Dead characters replaced by tombstones"
+				},
+
+				{
+					type: "paragraph",
+					text:	"When a character’s health reaches zero, the module transitions to a tombstone state that removes it from collision checks while preserving its screen position."
+				},
+						
+				{
+					type: "header1",
+					text: "Audio System"
+				},
+
+				{
+					type: "paragraph",
+					text:
+						"Sound effects are generated using a PWM audio module triggered by attack and ultimate events. Tone frequency and duration are stored in ROM, allowing multiple effects without increasing logic complexity."
+				},
+
+				{
+					type: "header1",
+					text: "Final Implementation"
+				},
+
+				{
+					type: "files",
+					files: [
+						{ name: "Source code.zip", href: "/projects/ee2026/MVPFINAL.xpr.zip" }
+					]
 				}
-			],
+
+			]
 		},
 		{
 			slug: "reflectarray",
